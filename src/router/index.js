@@ -1,9 +1,9 @@
 import { createRouter, createWebHistory } from "vue-router";
-import Home from "../Home.vue";
-import Admin from "../Admin.vue";
-import NotFound from "../NotFound.vue";
-import Login from "@/Login.vue";
 import { authService } from "@/services/auth";
+import Home from "@/components/Home.vue";
+import Login from "@/components/Login.vue";
+import Admin from "@/components/Admin.vue";
+import NotFound from "@/components/NotFound.vue";
 
 const routes = [
   {
