@@ -21,7 +21,7 @@
 <script setup>
 import { ref } from 'vue';
 import { useRouter, useRoute } from 'vue-router';
-import { authService } from './services/auth';
+import { authService } from '../services/auth';
 
 const router = useRouter();
 const route = useRoute();
