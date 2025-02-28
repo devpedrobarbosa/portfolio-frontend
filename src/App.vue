@@ -15,7 +15,7 @@
             <div class="hero-text">
                 <p class="hero-intro">
                     <span class="console-prefix">$</span> Hello, my name is Pedro
-                    Barbosa
+                    Barbosa!
                 </p>
                 <div class="typing-container">
                     <p class="typing-text">and I develop ideas.</p>
