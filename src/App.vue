@@ -15,7 +15,7 @@
             <div class="hero-text">
                 <p class="hero-intro">
                     <span class="console-prefix">$</span> Hello, my name is Pedro
-                    Barbosa!
+                    Barbosa
                 </p>
                 <div class="typing-container">
                     <p class="typing-text">and I develop ideas.</p>
@@ -23,7 +23,7 @@
                 <p class="hero-description">
                     I'm currently 20 years old and I'm from Rio de Janeiro, Brasil.<br /><br />
                     I'm a Computer Science student at
-                    <strong>Universidade Veiga de Almeida</strong>, with 5 years of
+                    <strong>Universidade Veiga de Almeida</strong> with 5 years of
                     self-taught development experience. My journey began at age 15 when
                     Minecraft inspired me to learn Java, kickstarting my passion for
                     coding. While I specialize in backend development, I consider myself
