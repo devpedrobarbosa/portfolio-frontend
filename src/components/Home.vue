@@ -36,7 +36,7 @@
                     frameworks like React and Vue, along with core web technologies.
                     Currently seeking opportunities to apply my technical skills in a
                     professional environment.<br /><br />
-                    I took a full English course acquiring level
+                    I took a full conversational English course acquiring level
                     <strong>CEFR B2</strong> through Cambridge tests.
                 </p>
                 <a href="#contact" class="cta-button">Get In Touch</a>
