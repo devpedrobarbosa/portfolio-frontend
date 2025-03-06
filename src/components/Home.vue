@@ -221,7 +221,7 @@ export default {
     methods: {
         async fetchProjects() {
             try {
-                const response = await fetch('https://api.pedrao.tech:8080/api/projects', {
+                const response = await fetch('http://api.pedrao.tech:8080/api/projects', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
