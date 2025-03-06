@@ -8,7 +8,6 @@
     "description": "I'm currently 20 years old and I'm from Rio de Janeiro, Brasil.<br/><br/>I'm a Computer Science student at <strong>Universidade Veiga de Almeida</strong> with 5 years of self taught development experience. My journey began at age 15 when Minecraft inspired me to learn Java, kickstarting my passion for coding. While I specialize in backend development, I consider myself a full-stack developer with a solid foundation in database technologies (MySQL, PostgreSQL, MongoDB, Redis) and experience building RESTful APIs with Spring Boot. I've expanded my skillset to include Python for backend solutions and JavaScript for cross-stack development, complemented by working knowledge of modern frontend frameworks like React and Vue, along with core web technologies. Currently seeking opportunities to apply my technical skills in a professional environment.<br/><br/>I took a full conversational English course acquiring level <strong>CEFR B2</strong> through Cambridge tests.",
     "get-in-touch": "Get in touch",
     "projects-section": "My projects",
-    "minerva-desc": "An extensive Core for building a Minecraft Network. It has a back-end server developed in pure java to handle database connections and operations and relies on a robust messaging system and redis caching to ensure information will be quickly available when needed.",
     "about-section": "About me",
     "skills": "My skills",
     "languages": "Languages",

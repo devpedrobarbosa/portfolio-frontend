@@ -43,20 +43,14 @@
         <div class="projects-grid">
             <div v-for="(project, index) in projects" :key="index" class="project-card">
                 <h3 class="project-title">{{ project.name }}</h3>
-                <p>{{ project.description }}</p>
+                <p>{{ $i18n.locale == 'en' ? project.enDescription : project.ptDescription }}</p>
                 <div class="project-tags">
                     <span v-for="(tag, tagIndex) in project.tags" :key="tagIndex" class="tag">{{ tag }}</span>
                 </div>
             </div>
             <!-- Fallback if no projects loaded -->
-            <div v-if="projects.length === 0" class="project-card">
-                <h3 class="project-title">Minerva</h3>
-                <p>{{ $t('minerva-desc') }}</p>
-                <div class="project-tags">
-                    <span class="tag">Java</span>
-                    <span class="tag">PostgreSQL</span>
-                    <span class="tag">Redis</span>
-                </div>
+            <div v-if="projects.length === 0">
+                <p>Nenhum projeto por aqui :(</p>
             </div>
         </div>
     </section>
@@ -207,6 +201,7 @@
 </template>
 
 <script>
+import i18n from '@/i18n';
 import LanguageSwitcher from './LanguageSwitcher.vue'
 
 export default {
@@ -234,17 +229,18 @@ export default {
                 }
                 
                 const data = await response.json();
-                
-                if (Array.isArray(data)) {
-                    this.projects = data;
-                } else if (data && typeof data === 'object') {
-                    // Check for common structures in Spring Boot responses
-                    if (data.content && Array.isArray(data.content)) {
-                        this.projects = data.content;
-                    } else if (data._embedded && Array.isArray(data._embedded.projects)) {
-                        this.projects = data._embedded.projects;
-                    }
-                }
+                this.projects = data;
+
+                // if (Array.isArray(data)) {
+                //     this.projects = data;
+                // } else if (data && typeof data === 'object') {
+                //     // Check for common structures in Spring Boot responses
+                //     if (data.content && Array.isArray(data.content)) {
+                //         this.projects = data.content;
+                //     } else if (data._embedded && Array.isArray(data._embedded.projects)) {
+                //         this.projects = data._embedded.projects;
+                //     }
+                // }
             } catch (error) {
                 console.error('Error fetching projects:', error);
             }
