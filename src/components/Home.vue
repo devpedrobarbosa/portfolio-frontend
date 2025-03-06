@@ -2,12 +2,13 @@
     <header>
         <nav>
             <div class="logo">&lt;/&gt;</div>
-            <ul class="nav-links">
-                <li><a href="#">Home</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
+            <div class="nav-links">
+                <a href="#">{{ $t('home') }}</a>
+                <a href="#projects">{{ $t('projects') }}</a>
+                <a href="#about">{{ $t('about') }}</a>
+                <a href="#contact">{{ $t('contact') }}</a>
+            </div>
+            <LanguageSwitcher/>
         </nav>
     </header>
 
@@ -15,14 +16,14 @@
         <div class="hero-content">
             <div class="hero-text">
                 <p class="hero-intro">
-                    <span class="console-prefix">$</span> Hello, my name is Pedro
-                    Barbosa
+                    <span class="console-prefix">$</span> {{ $t('hello') }}
                 </p>
                 <div class="typing-container">
-                    <p class="typing-text">and I develop ideas.</p>
+                    <p class="typing-text">{{ $t('slogan') }}</p>
                 </div>
                 <p class="hero-description">
-                    I'm currently 20 years old and I'm from Rio de Janeiro, Brasil.<br /><br />
+                    <p v-html="$t('description')"></p>
+                    <!-- I'm currently 20 years old and I'm from Rio de Janeiro, Brasil.<br /><br />
                     I'm a Computer Science student at
                     <strong>Universidade Veiga de Almeida</strong> with 5 years of
                     self-taught development experience. My journey began at age 15 when
@@ -37,13 +38,13 @@
                     Currently seeking opportunities to apply my technical skills in a
                     professional environment.<br /><br />
                     I took a full conversational English course acquiring level
-                    <strong>CEFR B2</strong> through Cambridge tests.
+                    <strong>CEFR B2</strong> through Cambridge tests. -->
                 </p>
-                <a href="#contact" class="cta-button">Get In Touch</a>
+                <a href="#contact" class="cta-button">{{ $t('get-in-touch') }}</a>
             </div>
             <div class="hero-image">
                 <div class="image-frame">
-                    <img src="/src/assets/profile.jpeg" alt="Profile Photo" />
+                    <img src="/src/assets/profile.jpeg" alt="404" />
                     <div class="frame-corner top-left"></div>
                     <div class="frame-corner top-right"></div>
                     <div class="frame-corner bottom-left"></div>
@@ -54,17 +55,11 @@
     </section>
 
     <section id="projects">
-        <h2 class="section-title">Projects</h2>
+        <h2 class="section-title">{{ $t('projects-section') }}</h2>
         <div class="projects-grid">
             <div class="project-card">
                 <h3 class="project-title">Minerva</h3>
-                <p>
-                    An extensive Core for building a Minecraft Network. It has a
-                    back-end server developed in pure java to handle database
-                    connections and operations and relies on a robust messaging system
-                    and redis caching to ensure information will be quickly available
-                    when needed.
-                </p>
+                <p>{{ $t('minerva-desc') }}</p>
                 <div class="project-tags">
                     <span class="tag">Java</span>
                     <span class="tag">PostgreSQL</span>
@@ -75,11 +70,11 @@
     </section>
 
     <section id="about" class="about">
-        <h2 class="section-title">About Me</h2>
-        <h3 style="margin-top: 1.5rem">Skills:</h3>
+        <h2 class="section-title">{{ $t('about-section') }}</h2>
+        <h3 style="margin-top: 1.5rem">{{ $t('skills') }}</h3>
         <div class="skills">
             <div class="skill-category">
-                <h4>Languages</h4>
+                <h4>{{ $t('languages') }}</h4>
                 <div class="skill-icons">
                     <a href="https://www.java.com" target="_blank" rel="noopener noreferrer" class="skill-link">
                         <div class="skill-item">
@@ -140,7 +135,7 @@
             </div>
 
             <div class="skill-category">
-                <h4>Frameworks and Others</h4>
+                <h4>{{ $t('frameworks') }}</h4>
                 <div class="skill-icons">
                     <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener noreferrer"
                         class="skill-link">
@@ -191,11 +186,11 @@
     </section>
 
     <section id="contact">
-        <h2 class="section-title">Contact</h2>
-        <p class="contact-info">
+        <h2 class="section-title">{{ $t('contact-section') }}</h2>
+        <!-- <p class="contact-info">
             I'm currently looking for new opportunities. Whether you have a question
             or just want to say hi, I'll try my best to get back to you!
-        </p>
+        </p> -->
         <div class="contact-item">
             <span class="console-prefix">$</span>
             <span>email: devpedrobarbosa@gmail.com</span>
@@ -215,9 +210,19 @@
     </section>
 
     <footer>
-        <p>Designed & Built by Pedro Barbosa © 2025</p>
+        <p>Copywright © Pedro Barbosa 2025</p>
     </footer>
 </template>
+
+<script>
+import LanguageSwitcher from './LanguageSwitcher.vue'
+
+export default {
+    components: {
+        LanguageSwitcher
+    }
+}
+</script>
 
 <style>
 :root {
