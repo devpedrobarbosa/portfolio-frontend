@@ -21,25 +21,9 @@
                 <div class="typing-container">
                     <p class="typing-text">{{ $t('slogan') }}</p>
                 </div>
-                <p class="hero-description">
-                    <p v-html="$t('description')"></p>
-                    <!-- I'm currently 20 years old and I'm from Rio de Janeiro, Brasil.<br /><br />
-                    I'm a Computer Science student at
-                    <strong>Universidade Veiga de Almeida</strong> with 5 years of
-                    self-taught development experience. My journey began at age 15 when
-                    Minecraft inspired me to learn Java, kickstarting my passion for
-                    coding. While I specialize in backend development, I consider myself
-                    a full-stack developer with a solid foundation in database
-                    technologies (MySQL, PostgreSQL, MongoDB, Redis) and experience
-                    building RESTful APIs with Spring Boot. I've expanded my skillset to
-                    include Python for backend solutions and JavaScript for cross-stack
-                    development, complemented by working knowledge of modern frontend
-                    frameworks like React and Vue, along with core web technologies.
-                    Currently seeking opportunities to apply my technical skills in a
-                    professional environment.<br /><br />
-                    I took a full conversational English course acquiring level
-                    <strong>CEFR B2</strong> through Cambridge tests. -->
-                </p>
+                <div class="hero-description">
+                    <div v-html="$t('description')"></div>
+                </div>
                 <a href="#contact" class="cta-button">{{ $t('get-in-touch') }}</a>
             </div>
             <div class="hero-image">
@@ -57,7 +41,15 @@
     <section id="projects">
         <h2 class="section-title">{{ $t('projects-section') }}</h2>
         <div class="projects-grid">
-            <div class="project-card">
+            <div v-for="(project, index) in projects" :key="index" class="project-card">
+                <h3 class="project-title">{{ project.name }}</h3>
+                <p>{{ project.description }}</p>
+                <div class="project-tags">
+                    <span v-for="(tag, tagIndex) in project.tags" :key="tagIndex" class="tag">{{ tag }}</span>
+                </div>
+            </div>
+            <!-- Fallback if no projects loaded -->
+            <div v-if="projects.length === 0" class="project-card">
                 <h3 class="project-title">Minerva</h3>
                 <p>{{ $t('minerva-desc') }}</p>
                 <div class="project-tags">
@@ -220,6 +212,46 @@ import LanguageSwitcher from './LanguageSwitcher.vue'
 export default {
     components: {
         LanguageSwitcher
+    },
+    data() {
+        return {
+            projects: []
+        }
+    },
+    methods: {
+        async fetchProjects() {
+            try {
+                const response = await fetch('http://api.pedrao.tech:8080/api/projects', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                
+                const data = await response.json();
+                
+                if (Array.isArray(data)) {
+                    this.projects = data;
+                } else if (data && typeof data === 'object') {
+                    // Check for common structures in Spring Boot responses
+                    if (data.content && Array.isArray(data.content)) {
+                        this.projects = data.content;
+                    } else if (data._embedded && Array.isArray(data._embedded.projects)) {
+                        this.projects = data._embedded.projects;
+                    }
+                }
+            } catch (error) {
+                console.error('Error fetching projects:', error);
+            }
+        }
+    },
+    mounted() {
+        this.fetchProjects();
     }
 }
 </script>
