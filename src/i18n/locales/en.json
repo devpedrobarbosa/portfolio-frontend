@@ -10,7 +10,9 @@
     "projects-section": "My projects",
     "about-section": "About me",
     "skills": "My skills",
-    "languages": "Languages",
-    "frameworks": "Frameworks and Others",
-    "contact-section": "Contact Information"
+    "language": "Languages",
+    "database": "Databases",
+    "other": "Frameworks and Others",
+    "contact-section": "Contact Information",
+    "nothing-here": "Nothing here :("
 }

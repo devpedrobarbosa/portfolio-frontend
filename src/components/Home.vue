@@ -8,7 +8,7 @@
                 <a href="#about">{{ $t('about') }}</a>
                 <a href="#contact">{{ $t('contact') }}</a>
             </div>
-            <LanguageSwitcher/>
+            <LanguageSwitcher />
         </nav>
     </header>
 
@@ -48,135 +48,34 @@
                     <span v-for="(tag, tagIndex) in project.tags" :key="tagIndex" class="tag">{{ tag }}</span>
                 </div>
             </div>
-            <!-- Fallback if no projects loaded -->
-            <div v-if="projects.length === 0">
-                <p>Nenhum projeto por aqui :(</p>
-            </div>
+            <div v-if="projects.length === 0"><p>{{ $t('nothing-here') }}</p></div>
         </div>
     </section>
-
     <section id="about" class="about">
         <h2 class="section-title">{{ $t('about-section') }}</h2>
         <h3 style="margin-top: 1.5rem">{{ $t('skills') }}</h3>
+
         <div class="skills">
-            <div class="skill-category">
-                <h4>{{ $t('languages') }}</h4>
+            <div v-for="category in orderedCategories" :key="category" class="skill-category">
+                <h4>{{ $t(category.toLowerCase()) }}</h4>
                 <div class="skill-icons">
-                    <a href="https://www.java.com" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-java-plain colored"></i>
-                            <span>Java</span>
-                        </div>
-                    </a>
-                    <a href="https://www.python.org" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-python-plain colored"></i>
-                            <span>Python</span>
-                        </div>
-                    </a>
-                    <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank"
+                    <a v-for="skill in skills[category]" :key="skill.name" :href="skill.url" target="_blank"
                         rel="noopener noreferrer" class="skill-link">
                         <div class="skill-item">
-                            <i class="devicon-javascript-plain colored"></i>
-                            <span>JavaScript</span>
+                            <i :class="skill.icon"></i>
+                            <span>{{ skill.name }}</span>
                         </div>
                     </a>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h4>Databases</h4>
-                <div class="skill-icons">
-                    <a href="https://www.mysql.com" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-mysql-plain colored"></i>
-                            <span>MySQL</span>
-                        </div>
-                    </a>
-                    <a href="https://www.postgresql.org" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-postgresql-plain colored"></i>
-                            <span>PostgreSQL</span>
-                        </div>
-                    </a>
-                    <a href="https://www.sqlite.org" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-sqlite-plain colored"></i>
-                            <span>SQLite</span>
-                        </div>
-                    </a>
-                    <a href="https://www.mongodb.com" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-mongodb-plain colored"></i>
-                            <span>MongoDB</span>
-                        </div>
-                    </a>
-                    <a href="https://redis.io" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-redis-plain colored"></i>
-                            <span>Redis</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="skill-category">
-                <h4>{{ $t('frameworks') }}</h4>
-                <div class="skill-icons">
-                    <a href="https://spring.io/projects/spring-boot" target="_blank" rel="noopener noreferrer"
-                        class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-spring-plain colored"></i>
-                            <span>Spring Boot</span>
-                        </div>
-                    </a>
-                    <a href="https://nodejs.org" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-nodejs-plain colored"></i>
-                            <span>Node.js</span>
-                        </div>
-                    </a>
-                    <a href="https://reactjs.org" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-react-original colored"></i>
-                            <span>React</span>
-                        </div>
-                    </a>
-                    <a href="https://vuejs.org" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-vuejs-plain colored"></i>
-                            <span>Vue</span>
-                        </div>
-                    </a>
-                    <a href="https://git-scm.com" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-git-plain colored"></i>
-                            <span>Git</span>
-                        </div>
-                    </a>
-                    <a href="https://www.docker.com" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-docker-plain colored"></i>
-                            <span>Docker</span>
-                        </div>
-                    </a>
-                    <a href="https://www.json.org" target="_blank" rel="noopener noreferrer" class="skill-link">
-                        <div class="skill-item">
-                            <i class="devicon-json-plain colored"></i>
-                            <span>JSON</span>
-                        </div>
-                    </a>
+                    <div v-if="!skills[category] || skills[category].length === 0"><p>{{ $t('nothing-here') }}</p></div>
                 </div>
             </div>
         </div>
     </section>
 
+
+
     <section id="contact">
         <h2 class="section-title">{{ $t('contact-section') }}</h2>
-        <!-- <p class="contact-info">
-            I'm currently looking for new opportunities. Whether you have a question
-            or just want to say hi, I'll try my best to get back to you!
-        </p> -->
         <div class="contact-item">
             <span class="console-prefix">$</span>
             <span>email: devpedrobarbosa@gmail.com</span>
@@ -201,7 +100,6 @@
 </template>
 
 <script>
-import i18n from '@/i18n';
 import LanguageSwitcher from './LanguageSwitcher.vue'
 
 export default {
@@ -210,7 +108,9 @@ export default {
     },
     data() {
         return {
-            projects: []
+            projects: [],
+            skills: {},
+            orderedCategories: ["LANGUAGE", "DATABASE", "OTHER"]
         }
     },
     methods: {
@@ -223,31 +123,38 @@ export default {
                         'Accept': 'application/json'
                     }
                 });
-                
                 if (!response.ok) {
                     throw new Error(`HTTP error! Status: ${response.status}`);
                 }
-                
                 const data = await response.json();
                 this.projects = data;
-
-                // if (Array.isArray(data)) {
-                //     this.projects = data;
-                // } else if (data && typeof data === 'object') {
-                //     // Check for common structures in Spring Boot responses
-                //     if (data.content && Array.isArray(data.content)) {
-                //         this.projects = data.content;
-                //     } else if (data._embedded && Array.isArray(data._embedded.projects)) {
-                //         this.projects = data._embedded.projects;
-                //     }
-                // }
             } catch (error) {
                 console.error('Error fetching projects:', error);
+            }
+        },
+        async fetchSkills(type) {
+            try {
+                const response = await fetch(`https://api.pedrao.tech:8080/api/skills/type/${type}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                this.skills[type] = await response.json();
+            } catch (error) {
+                console.error('Error fetching skills:', error);
             }
         }
     },
     mounted() {
         this.fetchProjects();
+        this.fetchSkills('LANGUAGE');
+        this.fetchSkills('DATABASE');
+        this.fetchSkills('OTHER');
     }
 }
 </script>
