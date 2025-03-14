@@ -48,7 +48,9 @@
                     <span v-for="(tag, tagIndex) in project.tags" :key="tagIndex" class="tag">{{ tag }}</span>
                 </div>
             </div>
-            <div v-if="projects.length === 0"><p>{{ $t('nothing-here') }}</p></div>
+            <div v-if="projects.length === 0">
+                <p>{{ $t('nothing-here') }}</p>
+            </div>
         </div>
     </section>
     <section id="about" class="about">
@@ -66,14 +68,13 @@
                             <span>{{ skill.name }}</span>
                         </div>
                     </a>
-                    <div v-if="!skills[category] || skills[category].length === 0"><p>{{ $t('nothing-here') }}</p></div>
+                    <div v-if="!skills[category] || skills[category].length === 0">
+                        <p>{{ $t('nothing-here') }}</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
-
-
-
     <section id="contact">
         <h2 class="section-title">{{ $t('contact-section') }}</h2>
         <div class="contact-item">
@@ -104,5 +105,4 @@ import script from '../scripts/home.js'
 export default script
 </script>
 
-<style src="../assets/styles/home.css">
-</style>
+<style src="../assets/styles/home.css"></style>
