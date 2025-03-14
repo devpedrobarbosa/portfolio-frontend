@@ -59,7 +59,7 @@
             <div v-for="category in orderedCategories" :key="category" class="skill-category">
                 <h4>{{ $t(category.toLowerCase()) }}</h4>
                 <div class="skill-icons">
-                    <a v-for="skill in skills[category]" :key="skill.name" :href="skill.url" target="_blank"
+                    <a v-for="skill in skills[category]" :key="skill.name" :href="skill.website" target="_blank"
                         rel="noopener noreferrer" class="skill-link">
                         <div class="skill-item">
                             <i :class="skill.icon"></i>
