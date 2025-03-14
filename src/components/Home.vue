@@ -116,7 +116,7 @@ export default {
     methods: {
         async fetchProjects() {
             try {
-                const response = await fetch('https://api.pedrao.tech:8080/api/projects', {
+                const response = await fetch('https://api.pedrao.tech:8080/v1/projects', {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
@@ -134,7 +134,7 @@ export default {
         },
         async fetchSkills(type) {
             try {
-                const response = await fetch(`https://api.pedrao.tech:8080/api/skills/type/${type}`, {
+                const response = await fetch(`https://api.pedrao.tech:8080/v1/skills/type/${type}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
