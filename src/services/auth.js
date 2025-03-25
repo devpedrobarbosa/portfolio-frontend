@@ -4,7 +4,9 @@ export const authService = {
 
   login(username, password) {
     return new Promise((resolve, reject) => {
-      if (username === "admin" && password === "password") {
+      const adminPassword = import.meta.env.VITE_ADMIN_PWD;
+
+      if (adminPassword && username === "admin" && password === adminPassword) {
         this.isAuthenticated = true;
         this.user = { username, role: "admin" };
         localStorage.setItem("user", JSON.stringify(this.user));
