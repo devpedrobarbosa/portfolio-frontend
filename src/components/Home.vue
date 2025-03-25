@@ -44,6 +44,7 @@
             <div v-for="(project, index) in projects" :key="index" class="project-card">
                 <h3 class="project-title">{{ project.name }}</h3>
                 <p>{{ $i18n.locale == 'en' ? project.enDescription : project.ptDescription }}</p>
+                <p>$ Github: {{ project.githubLink }}</p>
                 <div class="project-tags">
                     <span v-for="(tag, tagIndex) in project.tags" :key="tagIndex" class="tag">{{ tag }}</span>
                 </div>
