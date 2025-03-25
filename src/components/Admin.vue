@@ -222,6 +222,8 @@ const handleProjectSubmit = async () => {
         };
 
         if (editingProject.value) {
+            // Include the ID in the projectData when editing
+            projectData.id = editingProject.value.id;
             await axios.put(`https://api.pedrao.tech:8080/v1/projects/${editingProject.value.id}`, projectData);
             message.value = "Project updated successfully!";
             editingProject.value = null;
@@ -312,6 +314,8 @@ const editProject = (projectToEdit) => {
         enDescription: projectToEdit.enDescription,
         ptDescription: projectToEdit.ptDescription,
         tags: projectToEdit.tags.join(', ')
+        // Note: We don't include ID in project.value as it's already in editingProject.value
+        // The ID will be added to projectData in handleProjectSubmit when needed
     };
 };
 
