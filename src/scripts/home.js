@@ -1,8 +1,10 @@
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
 import api from '../services/api'
+import NavBar from "@/components/NavBar.vue";
 
 export default {
     components: {
+        NavBar,
         LanguageSwitcher
     },
     data() {

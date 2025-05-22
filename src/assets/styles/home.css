@@ -22,51 +22,6 @@ body {
     margin: 0 auto;
 }
 
-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background-color: rgba(18,
-            18,
-            18,
-            0.95);
-    padding: 1rem 2rem;
-    margin-bottom: 0;
-    backdrop-filter: blur(5px);
-    border-bottom: 1px solid var(--secondary-color);
-    transition: all 0.3s ease;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: var(--accent-color);
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    gap: 2rem;
-}
-
-.nav-links a {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.nav-links a:hover {
-    color: var(--accent-color);
-}
-
 .hero {
     min-height: 50vh;
     display: flex;
@@ -393,7 +348,6 @@ section {
     border: 2px solid var(--secondary-color);
     padding: 5px;
     background-color: rgba(64, 64, 64, 0.2);
-    position: relative;
 }
 
 .image-frame img {

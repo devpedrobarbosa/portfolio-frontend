@@ -1,4 +1,5 @@
 <template>
+  <NavBar/>
   <div v-if="loading">Loading...</div>
   <div v-else>
     <h1>Admin Panel</h1>
@@ -56,7 +57,8 @@
 
         <div class="col-12 col-md-8 col-lg-6">
           <label for="githubLink" class="form-label">GitHub</label>
-          <input v-model="project.githubLink" type="text" class="form-control" id="githubLink" placeholder="GitHub link">
+          <input v-model="project.githubLink" type="text" class="form-control" id="githubLink"
+                 placeholder="GitHub link">
         </div>
 
         <div class="col-12 col-md-8 col-lg-6">
@@ -159,6 +161,7 @@ import {ref, onMounted} from 'vue';
 import {useRouter} from 'vue-router';
 import axios from 'axios';
 import {authService} from '../services/auth';
+import NavBar from "@/components/NavBar.vue";
 
 const router = useRouter();
 const isAuthenticated = ref(false);
