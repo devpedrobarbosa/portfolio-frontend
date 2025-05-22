@@ -20,9 +20,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import { useRouter, useRoute } from 'vue-router';
-import { authService } from '../services/auth';
+import {ref} from 'vue';
+import {useRoute, useRouter} from 'vue-router';
+import {authService} from '../services/auth';
 import NavBar from "@/components/NavBar.vue";
 
 const router = useRouter();

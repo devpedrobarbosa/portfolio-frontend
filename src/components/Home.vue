@@ -84,10 +84,6 @@
                     rel="noopener noreferrer">linkedin.com/in/pedro-gabry-barbosa</a></span>
         </div>
     </section>
-
-    <footer>
-        <p>Copywright © Pedro Barbosa 2025</p>
-    </footer>
 </template>
 
 <script>
