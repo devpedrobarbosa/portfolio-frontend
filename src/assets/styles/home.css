@@ -199,6 +199,11 @@ nav {
     margin-bottom: 0.5rem;
 }
 
+.project-link {
+    color: var(--accent-color);
+
+}
+
 .project-tags {
     display: flex;
     flex-wrap: wrap;

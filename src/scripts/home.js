@@ -15,7 +15,10 @@ export default {
     methods: {
         async fetchProjects() {
             try {
-                this.projects = await api.get('/v1/projects');
+                const obj = await api.get('/v1/projects');
+                return new Promise(resolve => {
+                    resolve(obj);
+                })
             } catch (error) {
                 console.error('Error fetching projects:', error);
                 // You might want to show a user-friendly error message here
@@ -30,7 +33,7 @@ export default {
         }
     },
     mounted() {
-        this.fetchProjects();
+        this.fetchProjects().then(projects => this.projects = projects);
         this.orderedCategories.forEach(cat => this.fetchSkills(cat));
     }
 }

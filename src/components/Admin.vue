@@ -262,7 +262,7 @@ const fetchSkills = async () => {
         // If unauthorized, logout
         if (error.response?.status === 401) {
             authService.logout();
-            router.push('/login');
+            await router.push('/login');
         }
     }
 };
@@ -276,7 +276,7 @@ const fetchProjects = async () => {
         message.value = "Error loading projects.";
         if (error.response?.status === 401) {
             authService.logout();
-            router.push('/login');
+            await router.push('/login');
         }
     }
 };

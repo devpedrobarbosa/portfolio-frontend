@@ -38,7 +38,7 @@ const handleLogin = async () => {
     try {
         await authService.login(username.value, password.value);
         const redirectPath = route.query.redirect || '/admin';
-        router.push(redirectPath);
+        await router.push(redirectPath);
     } catch (err) {
         error.value = err.message || 'Login failed';
     } finally {
