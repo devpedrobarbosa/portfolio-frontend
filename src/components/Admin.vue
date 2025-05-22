@@ -32,17 +32,14 @@
 
             <h2 class="mt-4">{{ editingProject ? 'Edit Project' : 'Add new Project' }}</h2>
             <form class="row g-3" @submit.prevent="handleProjectSubmit">
-                <!-- Project Name - Full width on small screens, 8 columns on medium and up -->
                 <div class="col-12 col-md-8 col-lg-6">
                     <label for="projectName" class="form-label">Project Name</label>
                     <input v-model="project.name" type="text" class="form-control" id="projectName"
                         placeholder="Project Name">
                 </div>
 
-                <!-- Clear div for new row -->
                 <div class="w-100"></div>
 
-                <!-- Descriptions side by side -->
                 <div class="col-12 col-md-6">
                     <label for="enDescription" class="form-label">English Description</label>
                     <textarea v-model="project.enDescription" class="form-control" id="enDescription" rows="3"
@@ -54,14 +51,12 @@
                         placeholder="Portuguese Description"></textarea>
                 </div>
 
-                <!-- Tags input with appropriate width -->
                 <div class="col-12 col-md-8 col-lg-6">
                     <label for="projectTags" class="form-label">Tags</label>
                     <input v-model="project.tags" type="text" class="form-control" id="projectTags"
                         placeholder="Tags (comma-separated)">
                 </div>
 
-                <!-- Buttons on a new row -->
                 <div class="col-12 mt-2">
                     <button type="submit" class="btn btn-success me-2">
                         {{ editingProject ? 'Update Project' : 'Add Project' }}
@@ -157,7 +152,6 @@ const isAuthenticated = ref(false);
 const user = ref(null);
 const loading = ref(true);
 
-// Use environment variable for API base URL
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 const message = ref("");
 const skill = ref({
@@ -201,9 +195,7 @@ const handleSubmit = async () => {
             await axios.post(`${API_BASE_URL}/v1/skills`, skill.value);
             message.value = "Skill added successfully!";
         }
-        // Reset form after success
         skill.value = { name: "", website: "", icon: "", type: "" };
-        // Refresh skills list
         await fetchSkills();
     } catch (error) {
         message.value = "Error adding/updating skill. Please try again.";
@@ -225,7 +217,6 @@ const handleProjectSubmit = async () => {
         return;
     }
 
-    // Convert comma-separated tags to array
     const tagsArray = project.value.tags.split(',').map(tag => tag.trim()).filter(tag => tag !== '');
 
     try {
@@ -235,7 +226,6 @@ const handleProjectSubmit = async () => {
         };
 
         if (editingProject.value) {
-            // Include the ID in the projectData when editing
             projectData.id = editingProject.value.id;
             await axios.put(`${API_BASE_URL}/v1/projects/${editingProject.value.id}`, projectData);
             message.value = "Project updated successfully!";
@@ -245,9 +235,7 @@ const handleProjectSubmit = async () => {
             message.value = "Project added successfully!";
         }
 
-        // Reset form after success
         project.value = { name: "", enDescription: "", ptDescription: "", tags: "" };
-        // Refresh projects list
         await fetchProjects();
     } catch (error) {
         message.value = "Error adding/updating project. Please try again.";
@@ -286,7 +274,6 @@ const fetchProjects = async () => {
     } catch (error) {
         console.error('Error fetching projects:', error);
         message.value = "Error loading projects.";
-        // If unauthorized, logout
         if (error.response?.status === 401) {
             authService.logout();
             router.push('/login');
@@ -337,8 +324,6 @@ const editProject = (projectToEdit) => {
         enDescription: projectToEdit.enDescription,
         ptDescription: projectToEdit.ptDescription,
         tags: projectToEdit.tags.join(', ')
-        // Note: We don't include ID in project.value as it's already in editingProject.value
-        // The ID will be added to projectData in handleProjectSubmit when needed
     };
 };
 

@@ -4,7 +4,6 @@ import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
 export default defineConfig(({ mode }) => {
-  // Load all environment variables
   const env = loadEnv(mode, process.cwd(), '')
 
   return {
@@ -31,7 +30,6 @@ export default defineConfig(({ mode }) => {
         }
       }
     },
-    // Vercel-specific configuration
     build: {
       outDir: 'dist',
       emptyOutDir: true,
