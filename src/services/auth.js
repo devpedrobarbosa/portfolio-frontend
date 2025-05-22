@@ -1,21 +1,27 @@
+import api from "../services/api";
+
 export const authService = {
   isAuthenticated: false,
   user: null,
 
-  login(username, password) {
-    return new Promise((resolve, reject) => {
-      const adminPassword = import.meta.env.VITE_ADMIN_PWD;
-
-      if (adminPassword && username === "admin" && password === adminPassword) {
+  async login(username, password) {
+    try {
+      const obj = await api.post("/v1/auth/login", {
+        username: username,
+        password: password,
+      });
+      return new Promise((resolve, reject) => {
         this.isAuthenticated = true;
         this.user = { username, role: "admin" };
         localStorage.setItem("user", JSON.stringify(this.user));
         localStorage.setItem("isAuthenticated", "true");
         resolve(this.user);
-      } else {
+      });
+    } catch (error) {
+      return new Promise((resolve, reject) => {
         reject(new Error("Invalid credentials"));
-      }
-    });
+      });
+    }
   },
 
   checkAuth() {

@@ -1,4 +1,5 @@
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
+import api from '../services/api'
 
 export default {
     components: {
@@ -14,44 +15,22 @@ export default {
     methods: {
         async fetchProjects() {
             try {
-                const response = await fetch('https://api.pedrao.tech:8080/v1/projects', {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                const data = await response.json();
-                this.projects = data;
+                this.projects = await api.get('/v1/projects');
             } catch (error) {
                 console.error('Error fetching projects:', error);
+                // You might want to show a user-friendly error message here
             }
         },
         async fetchSkills(type) {
             try {
-                const response = await fetch(`https://api.pedrao.tech:8080/v1/skills/type/${type}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Accept': 'application/json'
-                    }
-                });
-                if (!response.ok) {
-                    throw new Error(`HTTP error! Status: ${response.status}`);
-                }
-                this.skills[type] = await response.json();
+                this.skills[type] = await api.get(`/v1/skills/type/${type}`);
             } catch (error) {
-                console.error('Error fetching skills:', error);
+                console.error(`Error fetching ${type} skills:`, error);
             }
         }
     },
     mounted() {
         this.fetchProjects();
-        this.fetchSkills('LANGUAGE');
-        this.fetchSkills('DATABASE');
-        this.fetchSkills('OTHER');
+        this.orderedCategories.forEach(cat => this.fetchSkills(cat));
     }
 }
