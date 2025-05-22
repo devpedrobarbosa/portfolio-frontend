@@ -4,78 +4,82 @@
   <div v-else>
     <h1>Admin Panel</h1>
     <main>
-      <h2>{{ editingSkill ? 'Edit Skill' : 'Add new Skill' }}</h2>
-      <form class="row gy-2 gx-3 align-items-center" @submit.prevent="handleSubmit">
-        <div class="col-auto">
-          <input v-model="skill.name" type="text" class="form-control" placeholder="Name">
-        </div>
-        <div class="col-auto">
-          <input v-model="skill.website" type="text" class="form-control" placeholder="Website">
-        </div>
-        <div class="col-auto">
-          <input v-model="skill.icon" type="text" class="form-control" placeholder="DevIcon">
-        </div>
-        <div class="col-auto">
-          <select v-model="skill.type" class="form-select">
-            <option disabled value="">Type...</option>
-            <option value="LANGUAGE">Language</option>
-            <option value="DATABASE">Database</option>
-            <option value="OTHER">Framework & Others</option>
-          </select>
-        </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-success">{{
-              editingSkill ? 'Update Skill' : 'Add Skill'
-            }}
-          </button>
-          <button v-if="editingSkill" type="button" class="btn btn-secondary"
-                  @click="cancelEdit('skill')">Cancel
-          </button>
-        </div>
-      </form>
+      <section id="skills">
+        <h2>{{ editingSkill ? 'Edit Skill' : 'Add new Skill' }}</h2>
+        <form class="row gy-2 gx-3 align-items-center" @submit.prevent="handleSubmit">
+          <div class="col-auto">
+            <input v-model="skill.name" type="text" class="form-control" placeholder="Name">
+          </div>
+          <div class="col-auto">
+            <input v-model="skill.website" type="text" class="form-control" placeholder="Website">
+          </div>
+          <div class="col-auto">
+            <input v-model="skill.icon" type="text" class="form-control" placeholder="DevIcon">
+          </div>
+          <div class="col-auto">
+            <select v-model="skill.type" class="form-select">
+              <option disabled value="">Type...</option>
+              <option value="LANGUAGE">Language</option>
+              <option value="DATABASE">Database</option>
+              <option value="OTHER">Framework & Others</option>
+            </select>
+          </div>
+          <div class="col-auto">
+            <button type="submit" class="btn btn-success">{{
+                editingSkill ? 'Update Skill' : 'Add Skill'
+              }}
+            </button>
+            <button v-if="editingSkill" type="button" class="btn btn-secondary"
+                    @click="cancelEdit('skill')">Cancel
+            </button>
+          </div>
+        </form>
+      </section>
 
-      <h2 class="mt-4">{{ editingProject ? 'Edit Project' : 'Add new Project' }}</h2>
-      <form class="row g-3" @submit.prevent="handleProjectSubmit">
-        <div class="col-12 col-md-8 col-lg-6">
-          <label for="projectName" class="form-label">Project Name</label>
-          <input v-model="project.name" type="text" class="form-control" id="projectName"
-                 placeholder="Project Name">
-        </div>
+      <section id="projects">
+        <h2 class="mt-4">{{ editingProject ? 'Edit Project' : 'Add new Project' }}</h2>
+        <form class="row g-3" @submit.prevent="handleProjectSubmit">
+          <div class="col-12 col-md-8 col-lg-6">
+            <label for="projectName" class="form-label">Project Name</label>
+            <input v-model="project.name" type="text" class="form-control" id="projectName"
+                   placeholder="Project Name">
+          </div>
 
-        <div class="w-100"></div>
+          <div class="w-100"></div>
 
-        <div class="col-12 col-md-6">
-          <label for="enDescription" class="form-label">English Description</label>
-          <textarea v-model="project.enDescription" class="form-control" id="enDescription" rows="3"
-                    placeholder="English Description"></textarea>
-        </div>
-        <div class="col-12 col-md-6">
-          <label for="ptDescription" class="form-label">Portuguese Description</label>
-          <textarea v-model="project.ptDescription" class="form-control" id="ptDescription" rows="3"
-                    placeholder="Portuguese Description"></textarea>
-        </div>
+          <div class="col-12 col-md-6">
+            <label for="enDescription" class="form-label">English Description</label>
+            <textarea v-model="project.enDescription" class="form-control" id="enDescription" rows="3"
+                      placeholder="English Description"></textarea>
+          </div>
+          <div class="col-12 col-md-6">
+            <label for="ptDescription" class="form-label">Portuguese Description</label>
+            <textarea v-model="project.ptDescription" class="form-control" id="ptDescription" rows="3"
+                      placeholder="Portuguese Description"></textarea>
+          </div>
 
-        <div class="col-12 col-md-8 col-lg-6">
-          <label for="githubLink" class="form-label">GitHub</label>
-          <input v-model="project.githubLink" type="text" class="form-control" id="githubLink"
-                 placeholder="GitHub link">
-        </div>
+          <div class="col-12 col-md-8 col-lg-6">
+            <label for="githubLink" class="form-label">GitHub</label>
+            <input v-model="project.githubLink" type="text" class="form-control" id="githubLink"
+                   placeholder="GitHub link">
+          </div>
 
-        <div class="col-12 col-md-8 col-lg-6">
-          <label for="projectTags" class="form-label">Tags</label>
-          <input v-model="project.tags" type="text" class="form-control" id="projectTags"
-                 placeholder="Tags (comma-separated)">
-        </div>
+          <div class="col-12 col-md-8 col-lg-6">
+            <label for="projectTags" class="form-label">Tags</label>
+            <input v-model="project.tags" type="text" class="form-control" id="projectTags"
+                   placeholder="Tags (comma-separated)">
+          </div>
 
-        <div class="col-12 mt-2">
-          <button type="submit" class="btn btn-success me-2">
-            {{ editingProject ? 'Update Project' : 'Add Project' }}
-          </button>
-          <button v-if="editingProject" type="button" class="btn btn-secondary"
-                  @click="cancelEdit('project')">Cancel
-          </button>
-        </div>
-      </form>
+          <div class="col-12 mt-2">
+            <button type="submit" class="btn btn-success me-2">
+              {{ editingProject ? 'Update Project' : 'Add Project' }}
+            </button>
+            <button v-if="editingProject" type="button" class="btn btn-secondary"
+                    @click="cancelEdit('project')">Cancel
+            </button>
+          </div>
+        </form>
+      </section>
 
       <p v-if="message" class="alert" :class="message.includes('Error') ? 'alert-danger' : 'alert-success'">{{
           message
@@ -100,7 +104,7 @@
             <td>{{ item.icon }}</td>
             <td>{{ item.type }}</td>
             <td>
-              <button class="btn btn-sm btn-primary me-2" @click="editSkill(item)">Edit</button>
+              <a href="#skills"><button class="btn btn-sm btn-primary me-2" @click="editSkill(item)">Edit</button></a>
               <button class="btn btn-sm btn-danger" @click="deleteSkill(item.id)">Delete</button>
             </td>
           </tr>
@@ -138,7 +142,7 @@
             <td>{{ item.tags.join(', ') }}</td>
             <td>{{ item.githubLink }}</td>
             <td>
-              <button class="btn btn-sm btn-primary me-2" @click="editProject(item)">Edit</button>
+              <a href="#projects"><button class="btn btn-sm btn-primary me-2" @click="editProject(item)">Edit</button></a>
               <button class="btn btn-sm btn-danger" @click="deleteProject(item.id)">Delete</button>
             </td>
           </tr>
