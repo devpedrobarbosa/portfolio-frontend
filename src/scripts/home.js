@@ -1,6 +1,9 @@
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
 import api from '../services/api'
 import NavBar from "@/components/NavBar.vue";
+import axios from 'axios';
+
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default {
     components: {
@@ -38,11 +41,6 @@ export default {
         this.fetchProjects().then(projects => this.projects = projects);
         this.orderedCategories.forEach(cat => this.fetchSkills(cat));
 
-        try {
-            const ip = await api.get('/v1/ip');
-            console.log(ip);
-        } catch (error) {
-            console.error(`Error fetching ip:`, error);
-        }
+        await axios.get(`${API_BASE_URL}/v1/access`);
     }
 }
