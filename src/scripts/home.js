@@ -34,8 +34,15 @@ export default {
             }
         }
     },
-    mounted() {
+    async mounted() {
         this.fetchProjects().then(projects => this.projects = projects);
         this.orderedCategories.forEach(cat => this.fetchSkills(cat));
+
+        try {
+            const ip = await api.get('/v1/ip');
+            console.log(ip);
+        } catch (error) {
+            console.error(`Error fetching ip:`, error);
+        }
     }
 }
