@@ -41,6 +41,6 @@ export default {
         this.fetchProjects().then(projects => this.projects = projects);
         this.orderedCategories.forEach(cat => this.fetchSkills(cat));
 
-        await axios.get(`${API_BASE_URL}/v1/access`);
+        await axios.post(`${API_BASE_URL}/v1/access`);
     }
 }
