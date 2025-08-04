@@ -13,14 +13,16 @@
     "axios": "^1.8.3",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
+    "gsap": "^3.13.0",
     "vue": "^3.5.13",
-    "vue-i18n": "^11.0.0-rc.1",
     "vue-router": "^4.5.0"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.2.1",
     "cross-env": "^7.0.3",
+    "i18n": "^0.15.1",
     "vite": "^6.1.0",
-    "vite-plugin-vue-devtools": "^7.7.2"
+    "vite-plugin-vue-devtools": "^7.7.2",
+    "vue-i18n": "^11.1.5"
   }
 }

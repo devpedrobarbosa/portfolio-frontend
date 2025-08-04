@@ -11,7 +11,7 @@
                     <p class="typing-text">{{ $t('slogan') }}</p>
                 </div>
                 <div class="hero-description">
-                    <div v-html="$t('description')"></div>
+                    <div v-html="$t('description').replace('%age%', age).replaceAll('%ln%', '<br/>').replaceAll('%str%', '<strong>').replaceAll('%/str%', '</strong>')"></div>
                 </div>
                 <a href="#contact" class="cta-button">{{ $t('get-in-touch') }}</a>
             </div>

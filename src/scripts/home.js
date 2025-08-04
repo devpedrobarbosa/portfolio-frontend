@@ -14,7 +14,8 @@ export default {
         return {
             projects: [],
             skills: {},
-            orderedCategories: ["LANGUAGE", "DATABASE", "OTHER"]
+            orderedCategories: ["LANGUAGE", "DATABASE", "OTHER"],
+            age: 0
         }
     },
     methods: {
@@ -40,6 +41,12 @@ export default {
     async mounted() {
         this.fetchProjects().then(projects => this.projects = projects);
         this.orderedCategories.forEach(cat => this.fetchSkills(cat));
+        const now = new Date();
+        const birth = new Date(2004, 10, 20);
+        this.age = now.getFullYear() - birth.getFullYear();
+        if ((now.getMonth() === birth.getMonth() && now.getDate() < birth.getDate()) || now.getMonth() < birth.getMonth()) {
+            this.age--;
+        }
 
         await axios.post(`${API_BASE_URL}/v1/access`);
     }
