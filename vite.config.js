@@ -16,10 +16,6 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url))
       }
     },
-    define: {
-      'import.meta.env.VITE_API_BASE_URL': JSON.stringify(env.VITE_API_BASE_URL || 'http://localhost:8080'),
-      'import.meta.env.VITE_ADMIN_PWD': JSON.stringify(env.VITE_ADMIN_PWD || 'admin')
-    },
     server: {
       proxy: {
         '/v1': {
