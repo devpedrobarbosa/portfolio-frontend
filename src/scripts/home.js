@@ -48,6 +48,6 @@ export default {
             this.age--;
         }
 
-        await axios.post(`${API_BASE_URL}/v1/access`);
+        // await axios.post(`${API_BASE_URL}/v1/access`);
     }
 }
