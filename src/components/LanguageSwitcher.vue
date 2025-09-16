@@ -2,8 +2,10 @@
     <div class="language-switcher">
         <label for="lang"/>
         <select name="lang" id="lang" v-model="$i18n.locale">
-            <option value="en">English</option>
-            <option value="pt">Português</option>
+            <label for="en"/>
+            <option id="en" value="en">English</option>
+            <label for="pt"/>
+            <option id="pt" value="pt">Português</option>
         </select>
     </div>
 </template>
