@@ -47,7 +47,5 @@ export default {
         if ((now.getMonth() === birth.getMonth() && now.getDate() < birth.getDate()) || now.getMonth() < birth.getMonth()) {
             this.age--;
         }
-
-        await axios.post(`${API_BASE_URL}/v1/access`);
     }
 }
