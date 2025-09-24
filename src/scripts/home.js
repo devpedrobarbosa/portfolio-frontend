@@ -1,9 +1,6 @@
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
 import api from '../services/api'
 import NavBar from "@/components/NavBar.vue";
-import axios from 'axios';
-
-const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 export default {
     components: {
@@ -36,16 +33,18 @@ export default {
             } catch (error) {
                 console.error(`Error fetching ${type} skills:`, error);
             }
+        },
+        async fetchAge() {
+            try {
+                this.age = await api.get('/v1/age');
+            } catch (error) {
+                console.error('Error fetching age:', error);
+            }
         }
     },
     async mounted() {
         this.fetchProjects().then(projects => this.projects = projects);
         this.orderedCategories.forEach(cat => this.fetchSkills(cat));
-        const now = new Date();
-        const birth = new Date(2004, 10, 20);
-        this.age = now.getFullYear() - birth.getFullYear();
-        if ((now.getMonth() === birth.getMonth() && now.getDate() < birth.getDate()) || now.getMonth() < birth.getMonth()) {
-            this.age--;
-        }
+        await this.fetchAge();
     }
 }
